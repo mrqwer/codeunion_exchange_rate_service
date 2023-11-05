@@ -11,3 +11,4 @@ class Currency(models.Model):
     class Meta:
         verbose_name = "Currency"
         verbose_name_plural = "Currencies"
+        ordering = ['id']

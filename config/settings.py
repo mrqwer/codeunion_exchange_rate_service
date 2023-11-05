@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+from datetime import timedelta
 import os
 from dotenv import load_dotenv
 
@@ -116,14 +116,25 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-rest_framework = {
-    'default_authentication_classes': (
-        'REST_FRAMEWORK_SIMPLEJWT.AUTHENTICATION.jwtaUTHENTICATION',
+# rest_framework = {
+#     'default_authentication_classes': (
+#         'REST_FRAMEWORK_SIMPLEJWT.AUTHENTICATION.jwtaUTHENTICATION',
+#     ),
+# }
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
-
 SIMPLE_JWT = {
-   # 'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Adjust as needed
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),  # Adjust as needed
+    'SLIDING_TOKEN_LIFETIME': timedelta(days=7),  # Adjust as needed
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=120),  # Adjust as needed
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),  # Adjust as needed
 }
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
