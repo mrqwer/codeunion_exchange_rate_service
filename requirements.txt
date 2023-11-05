@@ -1,0 +1,10 @@
+Django==4.2.7
+python-dotenv==1.0.0
+djangorestframework_simplejwt
+psycopg2-binary
+djangorestframework
+djoser
+drf-yasg
+apscheduler
+django-apscheduler
+requests
