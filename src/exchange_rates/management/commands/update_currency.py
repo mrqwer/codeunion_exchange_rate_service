@@ -1,10 +1,9 @@
-from optparse import make_option
 import requests
 import xml.etree.ElementTree as ET
 from django.core.management.base import BaseCommand
-from src.exchange_rates.models import Currency  # Replace 'yourapp' with your app's name
+from src.exchange_rates.models import Currency
 from enum import Enum
-from typing import Optional, Union
+from typing import Union
 
 
 class Fields(str, Enum):
