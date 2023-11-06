@@ -47,11 +47,11 @@ The project uses a PostgreSQL database with a 'currency' table. The 'currency' t
 
 ---
 
-## Regular Course Updates
+## CRON Functionality
 
 A CRON function periodically accesses the XML data source at [http://www.nationalbank.kz/rss/rates_all.xml](http://www.nationalbank.kz/rss/rates_all.xml) and updates the exchange rates in the database. This ensures that the exchange rates stay up-to-date.
 
----
+The CRON task is scheduled to run daily at midnight (00:00) to keep the exchange rate data current.
 
 ## Console Command for Data Management
 
@@ -134,7 +134,83 @@ This command shows you the menu of actions. Make choice with numbers provided th
 ```
 
 ---
+When the server starts. You are welcome to make requests on localhost:8080.
 
+
+### API Reference
+
+#### Get all currencies with pagination parameters set by you.
+
+```http
+  GET /api/v1/items
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `string` | **Required**. Your API key |
+
+#### Get single currency
+
+```http
+  GET /api/v1/currencies/${id}
+```
+
+| Parameter | Type     | Description                           |
+| :-------- | :------- |:--------------------------------------|
+| `id`      | `string` | **Required**. Id of currency to fetch |
+
+
+#### User registration
+
+```http
+  POST /api/v1/user_register
+```
+```json
+{
+    "username": "username",
+    "password": "password",
+    "password2": "password2",
+    "email": "example@example.com",
+    "first_name": "first_name",
+    "last_name": "last_name"
+}
+```
+
+#### Create bearer token
+
+```http
+  POST /auth/jwt/create
+```
+```json
+{
+    "username": "username",
+    "password": "password"
+}
+
+```
+
+#### Refresh the token
+
+```http
+  POST /auth/jwt/refresh
+```
+```json
+{
+    "refresh": "token"
+}
+```
+
+
+#### Verify the token
+
+```http
+  POST /auth/jwt/verify
+```
+```json
+{
+    "token": "token"
+}
+```
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
