@@ -48,8 +48,9 @@ INSTALLED_APPS = [
 
     'djoser',
     'rest_framework',
-    'drf_yasg',
-    'src.exchange_rates.apps.ExchangeRatesConfig'
+    'rest_framework_simplejwt',
+    'src.exchange_rates.apps.ExchangeRatesConfig',
+    'src.users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
